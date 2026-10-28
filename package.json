@@ -1,0 +1,11 @@
+{
+  "name": "bondaries-dev",
+  "private": true,
+  "description": "Test-only dependencies for the bondaries site (the site itself loads these from CDNs).",
+  "type": "module",
+  "devDependencies": {
+    "@huggingface/tokenizers": "0.2.0",
+    "@rdkit/rdkit": "2026.9.1",
+    "jsme-editor": "2024.4.29"
+  }
+}

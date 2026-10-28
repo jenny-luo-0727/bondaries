@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="See how LLM tokenizers split SMILES, atom by atom.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="referrer" content="no-referrer">
+  <title>bondaries · SMILES tokenizer explorer</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="css/style.css">
+  <script>window.jsmeOnLoad = () => { window.jsmeReady = true; window.dispatchEvent(new Event('jsme-ready')); };</script>
+  <script defer src="https://unpkg.com/@rdkit/rdkit@2026.9.1/dist/RDKit_minimal.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/jsme-editor@2024.4.29/jsme.nocache.js"></script>
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      <a class="wordmark" href="./" aria-label="bondaries home">bondaries<span aria-hidden="true">.</span></a>
+      <div class="header-actions"><a href="https://github.com/jenny-luo-0727/bondaries">Python package ↗</a><button id="theme" type="button" aria-label="Switch color theme">Dark mode</button></div>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="intro-title">
+        <h1 id="intro-title">Your tokenizer does not respect your bondaries.</h1>
+        <p class="subtitle">See how LLM tokenizers split SMILES, atom by atom.</p>
+      </section>
+      <section class="input-card" aria-labelledby="input-title">
+        <div class="section-heading"><h2 id="input-title"><span class="step">01</span> Start with a molecule</h2><span class="quiet">Type, choose, or draw</span></div>
+        <div id="examples" class="examples" aria-label="Example molecules"></div>
+        <label for="smiles">SMILES <span class="label-note">The exact string being tokenized</span></label>
+        <textarea id="smiles" rows="2" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="variant-note">CC(=O)Oc1ccccc1C(=O)O</textarea>
+        <div class="variant-row">
+          <label for="variant">Write as</label>
+          <select id="variant"><option value="typed">As typed / drawn</option><option value="canonical">RDKit canonical</option><option value="rooted">Rooted at atom</option></select>
+          <label id="root-label" for="root-atom" hidden>Atom <input id="root-atom" type="number" min="0" value="0" step="1"></label>
+          <button id="load-sketcher" type="button">Load into sketcher ↗</button>
+        </div>
+        <p id="variant-note" class="help">Canonical and rooted variants replace the text above. Editing it returns to “As typed / drawn”. Atom indices follow the source SMILES before choosing a variant, starting at 0. Shared URLs preserve that source.</p>
+        <p id="input-error" class="banner" role="status" hidden></p>
+        <details id="sketcher-details"><summary>Draw a molecule <span class="quiet">JSME sketcher</span></summary><div id="jsme" aria-label="Molecule sketcher"></div><p id="sketcher-status" class="help">Loading sketcher…</p></details>
+        <div class="context-row"><div class="prefix-field"><label for="prefix">Context prefix <span class="label-note">Optional</span></label><input id="prefix" type="text" spellcheck="false" autocomplete="off" placeholder="e.g. SMILES: "><p class="help">Text before the SMILES changes the first token.</p></div><label class="checkbox" for="special"><input id="special" type="checkbox" checked> Include special tokens<span class="help">Shown in grey; excluded from counts.</span></label></div>
+      </section>
+      <section class="comparison" aria-labelledby="comparison-title">
+        <div class="section-heading comparison-heading"><div><h2 id="comparison-title"><span class="step">02</span> Compare the boundaries</h2><p class="help">Each color is a token. Hover a token or atom to see the connection.</p></div><label class="add-model" for="add-model"><span class="sr-only">Add a tokenizer</span><select id="add-model"><option value="">+ Add a tokenizer</option></select></label></div>
+        <p id="app-status" role="status" class="help">Loading molecule tools and tokenizer list…</p>
+        <div id="panels" class="panels" aria-live="polite" aria-busy="true"></div>
+        <details class="crime-guide"><summary>What counts as a tokenization crime?</summary><dl><dt>Split atom</dt><dd>One atom’s SMILES text crosses token boundaries.</dd><dt>Detached ring closure</dt><dd>A ring label belongs to a different token than the preceding atom.</dd><dt>Context merge</dt><dd>A token spans both the prefix and the SMILES.</dd><dt>Dropped character</dt><dd>A SMILES character has no token owner and cannot be reconstructed.</dd></dl><p class="help">Split atoms use their first character’s token color. Hovering shows every contributing token. Colors repeat every eight tokens.</p></details>
+      </section>
+    </main>
+    <footer>
+      <p class="privacy">Tokenizers run in your browser; nothing is sent to a server.</p>
+      <p>Opening a shared URL sends its query string, including the SMILES and prefix, to the site host.</p>
+      <p>Tokenizer files load from this site or Hugging Face. The first load can take a moment; files are cached when your browser allows it.</p>
+      <details><summary>Tokenizer sources &amp; licenses</summary><ul id="attributions"></ul></details>
+      <p>Built with <a href="https://www.rdkitjs.com/">RDKit.js</a> (BSD-3), <a href="https://jsme-editor.github.io/">JSME</a> (BSD-3), and <a href="https://github.com/huggingface/tokenizers.js">tokenizers.js</a> (Apache-2.0).</p>
+      <div class="footer-bottom"><span>© 2026 Jenny Luo · <a href="https://github.com/jenny-luo-0727/bondaries/blob/main/LICENSE">MIT</a></span><span>Not affiliated with any model provider.</span></div>
+    </footer>
+  </div>
+  <noscript>This explorer requires JavaScript to tokenize and draw molecules in your browser.</noscript>
+</body>
+</html>
