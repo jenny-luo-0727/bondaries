@@ -126,16 +126,6 @@ special tokens. Qwen2.5 / Qwen3 and OLMo 2 / 3 each matched 228/228 cases. Brows
 is checked against Python on IDs, character owners and crime records. Mirrored files
 are used directly by the parity gate.
 
-## Not included
-
-| Tokenizer | Reason |
-|---|---|
-| Llama | Gated; omitted from the browser selection. Locally available tokenizers can still be supplied to Python. |
-| MoLFormer-XL | Its intended tokenizer requires repository code. |
-| ether0 | The pinned tokenizer file raises the known-incorrect-regex warning in Transformers; the shipped file does not match the intended tokenizer. |
-| ChemBERTa-77M-MTR | Test-only dropped-character reference. Its BPE tokenizer has zero merges and no unknown token; `BrC1=CC=CC=C1Cl` loses `r` and `l`, and reported offsets are misleading. Its license was not specified in the cached metadata. |
-| Kimi-K2, ChemLLM, GT4SD T5, seyonec ChemBERTa-zinc, gpt2_zinc | No compatible `tokenizer.json` in the initial browser selection. |
-
 ## Development
 
 ```sh
