@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bondaries"
+version = "0.1.0"
+description = "See how LLM tokenizers split SMILES, atom by atom."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{name = "Jenny Luo", email = "jennyluo@berkeley.edu"}]
+dependencies = ["rdkit", "transformers", "tokenizers"]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
+
+[project.scripts]
+bondaries = "bondaries.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["bondaries"]
+
+[tool.hatch.build.targets.sdist]
+include = ["bondaries", "tests", "README.md", "LICENSE", "pyproject.toml"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+extend-exclude = [".venv", "node_modules", "docs/tokenizers", "dist", "out"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
