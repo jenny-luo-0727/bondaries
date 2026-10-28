@@ -42,10 +42,10 @@ a { color: inherit; text-underline-offset: 3px; }
 .header-actions a { color: var(--secondary); text-decoration: none; }
 #theme { padding: 6px 10px; }
 .intro { padding: 47px 0 35px; }
-h1 { max-width: 770px; font-size: clamp(31px, 4.5vw, 52px); line-height: 1.12; letter-spacing: -2px; font-weight: 620; margin: 0; }
+h1 { font-size: clamp(27px, 3.8vw, 44px); line-height: 1.12; letter-spacing: -1.6px; font-weight: 620; margin: 0; text-wrap: balance; }
 .subtitle { color: var(--secondary); font-size: 17px; margin: 16px 0 0; }
 h2 { font-size: 18px; letter-spacing: -.2px; font-weight: 650; margin: 0; }
-.step { color: var(--muted); font-size: 14px; font-weight: 450; margin-right: 9px; font-variant-numeric: tabular-nums; }
+.step { color: var(--secondary); font-size: 22px; font-weight: 750; letter-spacing: -.5px; margin-right: 10px; font-variant-numeric: tabular-nums; }
 .quiet, .help, .label-note { color: var(--secondary); font-size: 14px; font-weight: 400; }
 .input-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
 .examples { display: flex; flex-wrap: wrap; gap: 7px; margin: 20px 0; }
