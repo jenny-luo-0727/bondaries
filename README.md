@@ -77,7 +77,7 @@ removed. Outputs contain every input row, including invalid molecules:
 
 Rates include all input rows in their denominators. Character fractions divide by
 all input SMILES characters; molecule fractions divide by `n`. Empty denominators
-are `null`. Batch outputs are private analysis artifacts and should not be committed.
+are `null`.
 
 ## Tokenization crimes
 
