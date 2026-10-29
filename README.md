@@ -5,8 +5,7 @@ Your tokenizer does not respect your bondaries.
 See how LLM tokenizers split SMILES, atom by atom. Inspect token boundaries, character
 ownership, colored molecular structures, and tokenization crimes in a browser or Python.
 
-Planned site: [jenny-luo-0727.github.io/bondaries](https://jenny-luo-0727.github.io/bondaries/).
-This source tree has not been published by this build.
+Site: [jenny-luo-0727.github.io/bondaries](https://jenny-luo-0727.github.io/bondaries/).
 
 ## Python
 

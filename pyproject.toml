@@ -12,6 +12,10 @@ license = "MIT"
 authors = [{name = "Jenny Luo", email = "jennyluo@berkeley.edu"}]
 dependencies = ["rdkit", "transformers", "tokenizers"]
 
+[project.urls]
+Homepage = "https://jenny-luo-0727.github.io/bondaries/"
+Source = "https://github.com/jenny-luo-0727/bondaries"
+
 [project.optional-dependencies]
 dev = ["pytest", "ruff"]
 
